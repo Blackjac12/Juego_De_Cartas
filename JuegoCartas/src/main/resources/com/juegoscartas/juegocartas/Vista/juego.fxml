@@ -5,6 +5,6 @@
 
 <BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.juegoscartas.juegocartas.Controllador.MemoramaControlador">
     <center>
-        <GridPane fx:id="gridPane" alignment="CENTER" />
+        <GridPane fx:id="gridCartas" alignment="CENTER" />
     </center>
 </BorderPane>

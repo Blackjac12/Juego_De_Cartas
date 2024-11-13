@@ -113,4 +113,9 @@ public class JuegoMemorama {
         cartaSeleccionada1 = null;
         cartaSeleccionada2 = null;
     }
+
+    public boolean sonPareja(Carta carta1, Carta carta2) {
+        
+        return carta1.getId() == carta2.getId();
+    }
 }

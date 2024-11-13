@@ -16,6 +16,7 @@ public class MemoramaControlador {
     private GridPane gridCartas;
 
     private JuegoMemorama juegoMemorama;
+    private Carta primeraSeleccionada = null; // Guarda la primera carta seleccionada para comparación
 
     public void iniciarJuego(int gridSize) {
         int parejas = (gridSize * gridSize) / 2;
@@ -40,7 +41,6 @@ public class MemoramaControlador {
         Button boton = new Button();
         boton.setPrefSize(100, 100);
 
-
         Image reverso = new Image("/com/juegoscartas/juegocartas/asest/reverso.jpg");
         ImageView imageView = new ImageView(reverso);
         imageView.setFitWidth(80);
@@ -52,7 +52,7 @@ public class MemoramaControlador {
     }
 
     private void manejarClickCarta(Carta carta, Button boton) {
-        if (carta.isVisible()) return;
+        if (carta.isVisible() || (primeraSeleccionada != null && primeraSeleccionada.equals(carta))) return;
 
         carta.setVisible(true);
         Image imagenCarta = new Image(carta.getImagePath());
@@ -61,20 +61,40 @@ public class MemoramaControlador {
         imageView.setFitHeight(80);
         boton.setGraphic(imageView);
 
-        if (juegoMemorama.seleccionarCarta(carta)) {
+        if (primeraSeleccionada == null) {
+            // Si no hay ninguna carta seleccionada, guardamos esta como la primera
+            primeraSeleccionada = carta;
+        } else {
+            // Ya hay una primera carta seleccionada, comparamos con la segunda
+            Carta segundaSeleccionada = carta;
 
+            if (juegoMemorama.sonPareja(primeraSeleccionada, segundaSeleccionada)) {
+                // Las cartas forman pareja, las dejamos visibles
+                primeraSeleccionada = null;
+            } else {
+                // Las cartas no forman pareja, las ocultamos después de una pausa
+                PauseTransition pause = new PauseTransition(Duration.seconds(1));
+                pause.setOnFinished(event -> {
+                    // Ocultar la primera carta
+                    primeraSeleccionada.setVisible(false);
+                    Image reverso = new Image("/com/juegoscartas/juegocartas/asest/reverso.jpg");
+                    ImageView reversoView1 = new ImageView(reverso);
+                    reversoView1.setFitWidth(80);
+                    reversoView1.setFitHeight(80);
+                    Button botonPrimera = (Button) gridCartas.getChildren().get(juegoMemorama.getCartas().indexOf(primeraSeleccionada));
+                    botonPrimera.setGraphic(reversoView1);
 
-            PauseTransition pause = new PauseTransition(Duration.seconds(1));
-            pause.setOnFinished(event -> {
-                carta.setVisible(false);
-                juegoMemorama.resetearSeleccion();
-                Image reverso = new Image("/com/juegoscartas/juegocartas/asest/reverso.jpg");
-                ImageView reversoView = new ImageView(reverso);
-                reversoView.setFitWidth(80);
-                reversoView.setFitHeight(80);
-                boton.setGraphic(reversoView);
-            });
-            pause.play();
+                    // Ocultar la segunda carta
+                    segundaSeleccionada.setVisible(false);
+                    ImageView reversoView2 = new ImageView(reverso);
+                    reversoView2.setFitWidth(80);
+                    reversoView2.setFitHeight(80);
+                    boton.setGraphic(reversoView2);
+
+                    primeraSeleccionada = null;
+                });
+                pause.play();
+            }
         }
     }
 }
