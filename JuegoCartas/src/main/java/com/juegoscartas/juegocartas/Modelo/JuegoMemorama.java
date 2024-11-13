@@ -6,8 +6,6 @@ import java.util.List;
 
 public class JuegoMemorama {
     private List<Carta> cartas;
-    private Carta cartaSeleccionada1 = null;
-    private Carta cartaSeleccionada2 = null;
 
     public JuegoMemorama(int parejas) {
         cartas = crearCartas(parejas);
@@ -86,32 +84,6 @@ public class JuegoMemorama {
         }
         Collections.shuffle(cartas);
         return cartas;
-    }
-
-    public boolean seleccionarCarta(Carta carta) {
-        if (cartaSeleccionada1 == null) {
-            cartaSeleccionada1 = carta;
-            carta.setVisible(true);
-            return false;
-        } else if (cartaSeleccionada2 == null && carta != cartaSeleccionada1) {
-            cartaSeleccionada2 = carta;
-            carta.setVisible(true);
-            if (cartaSeleccionada1.getId() == cartaSeleccionada2.getId()) {
-                cartaSeleccionada1 = null;
-                cartaSeleccionada2 = null;
-                return true;
-            } else {
-                return false;
-            }
-        }
-        return false;
-    }
-
-    public void resetearSeleccion() {
-        if (cartaSeleccionada1 != null) cartaSeleccionada1.setVisible(false);
-        if (cartaSeleccionada2 != null) cartaSeleccionada2.setVisible(false);
-        cartaSeleccionada1 = null;
-        cartaSeleccionada2 = null;
     }
 
     public boolean sonPareja(Carta carta1, Carta carta2) {

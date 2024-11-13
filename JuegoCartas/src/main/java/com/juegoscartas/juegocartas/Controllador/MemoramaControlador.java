@@ -16,7 +16,7 @@ public class MemoramaControlador {
     private GridPane gridCartas;
 
     private JuegoMemorama juegoMemorama;
-    private Carta primeraSeleccionada = null; // Guarda la primera carta seleccionada para comparación
+    private Carta primeraSeleccionada = null;
 
     public void iniciarJuego(int gridSize) {
         int parejas = (gridSize * gridSize) / 2;
@@ -62,20 +62,20 @@ public class MemoramaControlador {
         boton.setGraphic(imageView);
 
         if (primeraSeleccionada == null) {
-            // Si no hay ninguna carta seleccionada, guardamos esta como la primera
+
             primeraSeleccionada = carta;
         } else {
-            // Ya hay una primera carta seleccionada, comparamos con la segunda
+
             Carta segundaSeleccionada = carta;
 
             if (juegoMemorama.sonPareja(primeraSeleccionada, segundaSeleccionada)) {
-                // Las cartas forman pareja, las dejamos visibles
+
                 primeraSeleccionada = null;
             } else {
-                // Las cartas no forman pareja, las ocultamos después de una pausa
+
                 PauseTransition pause = new PauseTransition(Duration.seconds(1));
                 pause.setOnFinished(event -> {
-                    // Ocultar la primera carta
+
                     primeraSeleccionada.setVisible(false);
                     Image reverso = new Image("/com/juegoscartas/juegocartas/asest/reverso.jpg");
                     ImageView reversoView1 = new ImageView(reverso);
@@ -84,7 +84,7 @@ public class MemoramaControlador {
                     Button botonPrimera = (Button) gridCartas.getChildren().get(juegoMemorama.getCartas().indexOf(primeraSeleccionada));
                     botonPrimera.setGraphic(reversoView1);
 
-                    // Ocultar la segunda carta
+
                     segundaSeleccionada.setVisible(false);
                     ImageView reversoView2 = new ImageView(reverso);
                     reversoView2.setFitWidth(80);
