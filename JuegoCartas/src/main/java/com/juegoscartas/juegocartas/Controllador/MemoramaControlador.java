@@ -12,6 +12,7 @@ import javafx.animation.PauseTransition;
 
 public class MemoramaControlador {
     //private static final String RUTA_IMAGENES = "/com/juegoscartas/juegocartas/assets/";
+    // Profe las rutas son De mi pc si le le erro solo cambias el archivo C:\Users\vienn\OneDrive\Documentos\GitHub\ Donde lo tienes guardado
     private static final String RUTA_IMAGENES ="C:\\Users\\vienn\\OneDrive\\Documentos\\GitHub\\Juego_De_Cartas\\JuegoCartas\\src\\main\\java\\com\\juegoscartas\\juegocartas\\assets\\";
     @FXML
     private GridPane gridCartas;

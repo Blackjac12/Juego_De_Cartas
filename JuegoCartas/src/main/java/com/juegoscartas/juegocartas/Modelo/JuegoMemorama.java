@@ -18,6 +18,7 @@ public class JuegoMemorama {
     private List<Carta> crearCartas(int parejas) {
         List<Carta> cartas = new ArrayList<>();
         List<String> imagePaths = List.of(
+                // Profe las rutas son De mi pc si le le erro solo cambias el archivo C:\Users\vienn\OneDrive\Documentos\GitHub\ Donde lo tienes guardado
                 "C:\\Users\\vienn\\OneDrive\\Documentos\\GitHub\\Juego_De_Cartas\\JuegoCartas\\src\\main\\java\\com\\juegoscartas\\juegocartas\\assets\\2_of_clubs.jpg",
                 "C:\\Users\\vienn\\OneDrive\\Documentos\\GitHub\\Juego_De_Cartas\\JuegoCartas\\src\\main\\java\\com\\juegoscartas\\juegocartas\\assets\\2_of_diamonds.jpg",
                 "C:\\Users\\vienn\\OneDrive\\Documentos\\GitHub\\Juego_De_Cartas\\JuegoCartas\\src\\main\\java\\com\\juegoscartas\\juegocartas\\assets\\2_of_hearts.jpg",
