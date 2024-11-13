@@ -11,7 +11,8 @@ import javafx.util.Duration;
 import javafx.animation.PauseTransition;
 
 public class MemoramaControlador {
-
+    //private static final String RUTA_IMAGENES = "/com/juegoscartas/juegocartas/assets/";
+    private static final String RUTA_IMAGENES ="C:\\Users\\vienn\\OneDrive\\Documentos\\GitHub\\Juego_De_Cartas\\JuegoCartas\\src\\main\\java\\com\\juegoscartas\\juegocartas\\assets\\";
     @FXML
     private GridPane gridCartas;
 
@@ -41,7 +42,7 @@ public class MemoramaControlador {
         Button boton = new Button();
         boton.setPrefSize(100, 100);
 
-        Image reverso = new Image("/com/juegoscartas/juegocartas/asest/reverso.jpg");
+        Image reverso = new Image(RUTA_IMAGENES+"reverso.jpg");
         ImageView imageView = new ImageView(reverso);
         imageView.setFitWidth(80);
         imageView.setFitHeight(80);
@@ -77,7 +78,7 @@ public class MemoramaControlador {
                 pause.setOnFinished(event -> {
 
                     primeraSeleccionada.setVisible(false);
-                    Image reverso = new Image("/com/juegoscartas/juegocartas/asest/reverso.jpg");
+                    Image reverso = new Image(RUTA_IMAGENES+"reverso.jpg");
                     ImageView reversoView1 = new ImageView(reverso);
                     reversoView1.setFitWidth(80);
                     reversoView1.setFitHeight(80);
