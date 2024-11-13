@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.juegoscartas.juegocartas.Controllador.MemoramaControlador">
+    <center>
+        <GridPane fx:id="gridPane" alignment="CENTER" />
+    </center>
+</BorderPane>

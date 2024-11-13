@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.juegoscartas.juegocartas.Controllador.MemoramaMenuControlador">
+    <children>
+        <Label layoutX="231.0" layoutY="78.0" text="Bienvenido al Juego de Memorama" />
+        <VBox layoutX="265.0" layoutY="143.0" spacing="10.0">
+            <children>
+                <Button fx:id="btn4x4" text="4x4" />
+                <Button fx:id="btn6x6" text="6x6" />
+                <Button fx:id="btn8x8" text="8x8" />
+                <Button fx:id="btnSalir" text="Salir" />
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
