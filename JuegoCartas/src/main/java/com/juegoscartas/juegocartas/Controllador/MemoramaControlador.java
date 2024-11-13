@@ -1,65 +1,80 @@
 package com.juegoscartas.juegocartas.Controllador;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
 import com.juegoscartas.juegocartas.Modelo.Carta;
 import com.juegoscartas.juegocartas.Modelo.JuegoMemorama;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
+import javafx.util.Duration;
+import javafx.animation.PauseTransition;
 
 public class MemoramaControlador {
 
     @FXML
-    private GridPane gridPane;
+    private GridPane gridCartas;
 
-    private JuegoMemorama modelo;
+    private JuegoMemorama juegoMemorama;
 
     public void iniciarJuego(int gridSize) {
-        modelo = new JuegoMemorama(gridSize * gridSize / 2);
-        configurarTablero(gridSize);
+        int parejas = (gridSize * gridSize) / 2;
+        juegoMemorama = new JuegoMemorama(parejas);
+        mostrarCartas(gridSize);
     }
 
-    private void configurarTablero(int size) {
-        gridPane.getChildren().clear();
-
+    private void mostrarCartas(int gridSize) {
+        gridCartas.getChildren().clear();
         int index = 0;
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                Carta carta = modelo.getCartas().get(index++);
-                Button cartaBtn = crearBotonCarta(carta);
-                gridPane.add(cartaBtn, j, i);
+        for (int row = 0; row < gridSize; row++) {
+            for (int col = 0; col < gridSize; col++) {
+                if (index >= juegoMemorama.getCartas().size()) break;
+                Carta carta = juegoMemorama.getCartas().get(index++);
+                Button botonCarta = crearBotonCarta(carta);
+                gridCartas.add(botonCarta, col, row);
             }
         }
     }
 
     private Button crearBotonCarta(Carta carta) {
-        Button cartaBtn = new Button();
-        actualizarBotonCarta(carta, cartaBtn);
+        Button boton = new Button();
+        boton.setPrefSize(100, 100);
 
-        cartaBtn.setOnAction(e -> {
-            if (modelo.seleccionarCarta(carta)) {
-                actualizarBotonCarta(carta, cartaBtn);
-            } else {
-                actualizarBotonCarta(carta, cartaBtn);
-                new Thread(() -> {
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException ex) {
-                        ex.printStackTrace();
-                    }
-                    modelo.resetearSeleccion();
-                    actualizarBotonCarta(carta, cartaBtn);
-                }).start();
-            }
-        });
 
-        return cartaBtn;
+        Image reverso = new Image("/com/juegoscartas/juegocartas/asest/reverso.jpg");
+        ImageView imageView = new ImageView(reverso);
+        imageView.setFitWidth(80);
+        imageView.setFitHeight(80);
+        boton.setGraphic(imageView);
+
+        boton.setOnAction(e -> manejarClickCarta(carta, boton));
+        return boton;
     }
 
-    private void actualizarBotonCarta(Carta carta, Button cartaBtn) {
-        if (carta.isVisible()) {
-            cartaBtn.setText(String.valueOf(carta.getId()));
-        } else {
-            cartaBtn.setText("");
+    private void manejarClickCarta(Carta carta, Button boton) {
+        if (carta.isVisible()) return;
+
+        carta.setVisible(true);
+        Image imagenCarta = new Image(carta.getImagePath());
+        ImageView imageView = new ImageView(imagenCarta);
+        imageView.setFitWidth(80);
+        imageView.setFitHeight(80);
+        boton.setGraphic(imageView);
+
+        if (juegoMemorama.seleccionarCarta(carta)) {
+
+
+            PauseTransition pause = new PauseTransition(Duration.seconds(1));
+            pause.setOnFinished(event -> {
+                carta.setVisible(false);
+                juegoMemorama.resetearSeleccion();
+                Image reverso = new Image("/com/juegoscartas/juegocartas/asest/reverso.jpg");
+                ImageView reversoView = new ImageView(reverso);
+                reversoView.setFitWidth(80);
+                reversoView.setFitHeight(80);
+                boton.setGraphic(reversoView);
+            });
+            pause.play();
         }
     }
 }

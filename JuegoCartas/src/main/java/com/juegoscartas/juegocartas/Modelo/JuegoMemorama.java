@@ -69,6 +69,14 @@ public class JuegoMemorama {
                 "/com/juegoscartas/juegocartas/asest/king_of_hearts.jpg",
                 "/com/juegoscartas/juegocartas/asest/king_of_hearts2.jpg",
                 "/com/juegoscartas/juegocartas/asest/king_of_spades.jpg",
+                "/com/juegoscartas/juegocartas/asest/king_of_spades2.jpg",
+                "/com/juegoscartas/juegocartas/asest/queen_of_clubs.jpg",
+                "/com/juegoscartas/juegocartas/asest/queen_of_clubs2.jpg",
+                "/com/juegoscartas/juegocartas/asest/queen_of_diamonds2.jpg",
+                "/com/juegoscartas/juegocartas/asest/queen_of_hearts.jpg",
+                "/com/juegoscartas/juegocartas/asest/queen_of_hearts2.jpg",
+                "/com/juegoscartas/juegocartas/asest/queen_of_spades.jpg",
+                "/com/juegoscartas/juegocartas/asest/queen_of_spades2.jpg"
         );
 
         for (int i = 0; i < parejas; i++) {
