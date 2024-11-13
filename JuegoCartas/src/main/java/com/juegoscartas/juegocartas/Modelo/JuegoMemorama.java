@@ -59,8 +59,8 @@ public class JuegoMemorama {
                 "C:\\Users\\vienn\\OneDrive\\Documentos\\GitHub\\Juego_De_Cartas\\JuegoCartas\\src\\main\\java\\com\\juegoscartas\\juegocartas\\assets\\ace_of_hearts.jpg",
                 "C:\\Users\\vienn\\OneDrive\\Documentos\\GitHub\\Juego_De_Cartas\\JuegoCartas\\src\\main\\java\\com\\juegoscartas\\juegocartas\\assets\\ace_of_spades.jpg"
         );
-        // Resto del código
-    
+
+
 
 
         for (int i = 0; i < parejas; i++) {
