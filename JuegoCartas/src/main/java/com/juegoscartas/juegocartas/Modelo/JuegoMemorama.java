@@ -60,10 +60,6 @@ public class JuegoMemorama {
                 "C:\\Users\\vienn\\OneDrive\\Documentos\\GitHub\\Juego_De_Cartas\\JuegoCartas\\src\\main\\java\\com\\juegoscartas\\juegocartas\\assets\\ace_of_hearts.jpg",
                 "C:\\Users\\vienn\\OneDrive\\Documentos\\GitHub\\Juego_De_Cartas\\JuegoCartas\\src\\main\\java\\com\\juegoscartas\\juegocartas\\assets\\ace_of_spades.jpg"
         );
-
-
-
-
         for (int i = 0; i < parejas; i++) {
             String imagePath = imagePaths.get(i % imagePaths.size());
             cartas.add(new Carta(i, imagePath));
