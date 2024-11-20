@@ -70,7 +70,15 @@ public class JuegoMemorama {
     }
 
     public boolean sonPareja(Carta carta1, Carta carta2) {
-        
         return carta1.getId() == carta2.getId();
+    }
+
+    public boolean esJuegoTerminado() {
+        for (Carta carta : cartas) {
+            if (!carta.isVisible()) {
+                return false;
+            }
+        }
+        return true;
     }
 }
