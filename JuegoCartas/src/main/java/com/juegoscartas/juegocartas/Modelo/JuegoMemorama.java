@@ -3,12 +3,19 @@ package com.juegoscartas.juegocartas.Modelo;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 
 public class JuegoMemorama {
     private List<Carta> cartas;
+    private int puntos;
+    private long tiempoInicio;
+    private boolean juegoFinalizado;
 
     public JuegoMemorama(int parejas) {
         cartas = crearCartas(parejas);
+        puntos = 0;
+        tiempoInicio = System.currentTimeMillis();
+        juegoFinalizado = false;
     }
 
     public List<Carta> getCartas() {
@@ -70,7 +77,13 @@ public class JuegoMemorama {
     }
 
     public boolean sonPareja(Carta carta1, Carta carta2) {
-        return carta1.getId() == carta2.getId();
+        if (carta1.getId() == carta2.getId()) {
+            puntos += 10; // Aumenta 10 puntos por pareja correcta
+            return true;
+        } else {
+            puntos -= 2; // Penalización de 2 puntos por pareja incorrecta
+            return false;
+        }
     }
 
     public boolean esJuegoTerminado() {
@@ -80,5 +93,26 @@ public class JuegoMemorama {
             }
         }
         return true;
+    }
+
+    public void finalizarJuego() {
+        if (esJuegoTerminado()) {
+            juegoFinalizado = true;
+            long tiempoFin = System.currentTimeMillis();
+            long duracion = (tiempoFin - tiempoInicio) / 1000; // Duración en segundos
+            System.out.println("¡Felicidades, has terminado el juego!");
+            System.out.println("Puntaje final: " + puntos);
+            System.out.println("Tiempo total: " + duracion + " segundos.");
+
+            // Pregunta si desea regresar al menú
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("¿Deseas regresar al menú principal? (s/n): ");
+            String respuesta = scanner.nextLine();
+            if (respuesta.equalsIgnoreCase("s")) {
+                System.out.println("Regresando al menú...");
+            } else {
+                System.out.println("Gracias por jugar. ¡Hasta la próxima!");
+            }
+        }
     }
 }
