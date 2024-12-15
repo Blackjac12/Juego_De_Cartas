@@ -95,24 +95,5 @@ public class JuegoMemorama {
         return true;
     }
 
-    public void finalizarJuego() {
-        if (esJuegoTerminado()) {
-            juegoFinalizado = true;
-            long tiempoFin = System.currentTimeMillis();
-            long duracion = (tiempoFin - tiempoInicio) / 1000; // Duración en segundos
-            System.out.println("¡Felicidades, has terminado el juego!");
-            System.out.println("Puntaje final: " + puntos);
-            System.out.println("Tiempo total: " + duracion + " segundos.");
-
-            // Pregunta si desea regresar al menú
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("¿Deseas regresar al menú principal? (s/n): ");
-            String respuesta = scanner.nextLine();
-            if (respuesta.equalsIgnoreCase("s")) {
-                System.out.println("Regresando al menú...");
-            } else {
-                System.out.println("Gracias por jugar. ¡Hasta la próxima!");
-            }
-        }
-    }
+    
 }
